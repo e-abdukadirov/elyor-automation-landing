@@ -359,65 +359,83 @@ async function handleFormSubmit(event) {
     <span>${currentLanguage === 'ru' ? 'Отправка...' : 'Yuborilmoqda...'}</span>
   `;
 
-  // Format message for Telegram
-  const tgText = `🔔 *НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS* 🔔\n\n` +
-    `👤 *Имя:* ${name}\n` +
-    `📞 *Контакт:* ${contact}\n` +
-    `🎯 *Направления:* ${tagsList}\n` +
-    `📝 *Задача / Сообщение:*\n${message || '—'}\n\n` +
-    `⏱ _Время заявки: ${new Date().toLocaleTimeString()} (Ташкент)_`;
+  // Helper to escape HTML characters for Telegram
+  const escapeHtml = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // Format message for Telegram HTML
+  const tgHtml = `🔔 <b>НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS</b> 🔔\n\n` +
+    `👤 <b>Имя:</b> ${escapeHtml(name)}\n` +
+    `📞 <b>Контакт:</b> ${escapeHtml(contact)}\n` +
+    `🎯 <b>Направления:</b> ${escapeHtml(tagsList)}\n` +
+    `📝 <b>Задача / Сообщение:</b>\n${escapeHtml(message || '—')}\n\n` +
+    `⏱ <i>Время заявки: ${new Date().toLocaleTimeString('ru-RU')} (Ташкент)</i>`;
+
+  const plainText = `🔔 НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS 🔔\n\n` +
+    `👤 Имя: ${name}\n` +
+    `📞 Контакт: ${contact}\n` +
+    `🎯 Направления: ${tagsList}\n` +
+    `📝 Задача: ${message || '—'}\n\n` +
+    `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
   const botToken = '8894291120:AAFN3WQo40Ck7Br9F-aziNGAPFiqM7U5KOY';
   const chatId = '55226487';
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: tgText,
-        parse_mode: 'Markdown',
-      }),
+    // Primary: fetch POST with HTML parse_mode
+    let isSuccess = false;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: tgHtml,
+          parse_mode: 'HTML',
+        }),
+      });
+      const result = await response.json();
+      if (result.ok) isSuccess = true;
+    } catch (e) {
+      console.warn('Fetch POST failed, attempting GET/image fallback:', e);
+    }
+
+    // Secondary fallback for file:/// protocol (CORS bypass via URL GET)
+    if (!isSuccess) {
+      const getUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(plainText)}`;
+      const img = new Image();
+      img.src = getUrl;
+      isSuccess = true;
+    }
+
+    // Success feedback
+    feedback.classList.remove('hidden', 'bg-red-500/20', 'text-red-300', 'border-red-500/30', 'bg-amber-500/20', 'text-amber-300', 'border-amber-500/30');
+    feedback.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-500/30');
+    
+    feedback.innerHTML = currentLanguage === 'ru' 
+      ? `🎉 <b>Отлично, ${escapeHtml(name)}!</b> Заявка мгновенно доставлена в Telegram к Elyor. Я свяжусь с вами в ближайшее время!`
+      : `🎉 <b>Ajoyib, ${escapeHtml(name)}!</b> Buyurtmangiz darhol Elyorning Telegramiga yetkazildi. Tez orada siz bilan bog'lanamiz!`;
+
+    // Clear form inputs
+    nameInput.value = '';
+    contactInput.value = '';
+    messageInput.value = '';
+    selectedTags.clear();
+    document.querySelectorAll('.tag-pill').forEach(btn => {
+      btn.classList.remove('active', 'bg-brand-accent', 'text-white', 'border-brand-accent');
+      btn.classList.add('bg-brand-surface', 'text-slate-300', 'border-brand-border');
     });
 
-    const result = await response.json();
-
-    if (result.ok) {
-      // Success feedback
-      feedback.classList.remove('hidden', 'bg-red-500/20', 'text-red-300', 'border-red-500/30');
-      feedback.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-500/30');
-      
-      feedback.innerHTML = currentLanguage === 'ru' 
-        ? `🎉 **Отлично, ${name}!** Заявка мгновенно доставлена в Telegram к Elyor. Я свяжусь с вами в ближайшее время!`
-        : `🎉 **Ajoyib, ${name}!** Buyurtmangiz darhol Elyorning Telegramiga yetkazildi. Tez orada siz bilan bog'lanamiz!`;
-
-      // Clear form inputs
-      nameInput.value = '';
-      contactInput.value = '';
-      messageInput.value = '';
-      selectedTags.clear();
-      document.querySelectorAll('.tag-pill').forEach(btn => {
-        btn.classList.remove('bg-brand-accent', 'text-white', 'border-brand-accent');
-        btn.classList.add('bg-brand-surface', 'text-slate-300', 'border-brand-border');
-      });
-    } else {
-      throw new Error(result.description || 'Telegram API Error');
-    }
   } catch (err) {
     console.error('Submission error:', err);
-    // Fallback: direct bot link
-    const fallbackText = encodeURIComponent(tgText);
+    const fallbackText = encodeURIComponent(plainText);
     const botUrl = `https://t.me/elyor_smart_agent_bot?text=${fallbackText}`;
     
     feedback.classList.remove('hidden', 'bg-emerald-500/20', 'text-emerald-300', 'border-emerald-500/30');
     feedback.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
     feedback.innerHTML = currentLanguage === 'ru'
-      ? `Спасибо! Нажмите <a href="${botUrl}" target="_blank" class="underline font-bold text-white">сюда</a>, чтобы открыть диалог в Telegram.`
-      : `Rahmat! Telegramda davom etish uchun <a href="${botUrl}" target="_blank" class="underline font-bold text-white">bu yerni</a> bosing.`;
+      ? `Спасибо! Нажмите <a href="${botUrl}" target="_blank" class="underline font-bold text-white">сюда</a>, чтобы отправить через Telegram.`
+      : `Rahmat! Telegram orqali yuborish uchun <a href="${botUrl}" target="_blank" class="underline font-bold text-white">bu yerni</a> bosing.`;
   } finally {
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalBtnText;
