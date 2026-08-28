@@ -123,7 +123,7 @@ const translations = {
 
     form_title: "Опишите задачу за 1 минуту",
     form_subtitle: "Выберите интересующие направления или напишите свой вопрос:",
-    form_categories_label: "Что требуется автоматизировать?",
+    form_categories_label: "Nimani avtomatlashtirish kerak?",
     tag_1: "Учёт и себестоимость",
     tag_2: "Telegram-бот для заказов",
     tag_3: "Лендинг для продаж",
@@ -232,7 +232,7 @@ const translations = {
     process_title: "Ish tartibi: tez va kutilmagan qiyinchiliklarsiz",
     process_desc: "Birinchi suhbatdan boshlab jamoangiz qo'lidagi tayyor ishchi tizimgacha bo'lgan 4 ta bosqich.",
     step1_title: "Jarayonni o'rganaman",
-    step1_desc: "Qo'ng'iroqlashamiz vintage uchrashamiz. Hozir qanday hisob yuritasiz va qaysi ishlar eng ko'p vaqt olayotganini ko'rsatasiz.",
+    step1_desc: "Qo'ng'iroqlashamiz yoki uchrashamiz. Hozir qanday hisob yuritasiz va qaysi ishlar eng ko'p vaqt olayotganini ko'rsatasiz.",
     step1_time: "Muddat: 1 kun",
     step2_title: "Birinchi versiyani yig'aman",
     step2_desc: "Asosiy vazifangizga mos oddiy va tushunarli prototip (jadval, bot yoki panel) yarataman.",
@@ -377,20 +377,20 @@ async function handleFormSubmit(event) {
     `📝 Задача: ${message || '—'}\n\n` +
     `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
-  const cleanPhone = contact.replace(/[^0-9+]/g, '');
+  const cleanDigits = contact.replace(/[^0-9]/g, '');
   const cleanTg = contact.replace('https://t.me/', '').replace('@', '').trim();
   
   const inlineButtons = [];
   const actionRow = [];
-  if (cleanPhone && cleanPhone.length >= 9) {
-    actionRow.push({ text: '📞 Позвонить', url: `tel:${cleanPhone}` });
+
+  if (cleanTg && !cleanTg.startsWith('+') && isNaN(Number(cleanTg))) {
+    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/${cleanTg}` });
+  } else if (cleanDigits.length >= 9) {
+    actionRow.push({ text: '💬 WhatsApp / Чат', url: `https://wa.me/${cleanDigits}` });
   }
-  if (cleanTg && !cleanTg.startsWith('+')) {
-    actionRow.push({ text: '💬 Написать в TG', url: `https://t.me/${cleanTg}` });
-  }
-  if (actionRow.length > 0) {
-    inlineButtons.push(actionRow);
-  }
+
+  actionRow.push({ text: '📊 CRM & Статус в Боте', url: 'https://t.me/elyor_smart_agent_bot?start=crm' });
+  inlineButtons.push(actionRow);
 
   const botToken = '8894291120:AAFN3WQo40Ck7Br9F-aziNGAPFiqM7U5KOY';
   const chatId = '55226487';
