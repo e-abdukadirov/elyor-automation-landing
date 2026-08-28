@@ -115,7 +115,7 @@ const translations = {
     contact_title: "Давайте обсудим вашу задачу",
     contact_desc: "Напишите, какой процесс сейчас отнимает больше всего времени. Я бесплатно предложу 1-2 варианта решения и сориентирую по срокам.",
     tg_box_subtitle: "БЫСТРЫЙ ОТВЕТ В TELEGRAM",
-    tg_box_desc: "Умный ассистент мгновенно примет ваше обращение и соединит напрямую с Elyor.",
+    tg_box_desc: "Aqlli assistent xabaringizni darhol qabul qiladi va to'g'ridan-to'g'ri Elyor bilan bog'laydi.",
     tg_btn_open: "Открыть бота",
     tg_btn_personal: "Личный TG",
     phone_label: "ПРЯМОЙ ТЕЛЕФОН / СВЯЗЬ",
@@ -130,7 +130,8 @@ const translations = {
     tag_4: "Хаос в Excel",
     tag_5: "Другое",
     form_name_label: "Ваше имя",
-    form_contact_label: "Telegram или телефон",
+    form_social_label: "Telegram / Instagram",
+    form_phone_label: "Телефон для связи",
     form_message_label: "Коротко о задаче (необязательно)",
     form_submit_btn: "Отправить заявку в Telegram",
     footer_rights: "© 2026. Автоматизация для малого и среднего бизнеса.",
@@ -263,7 +264,8 @@ const translations = {
     tag_4: "Exceldagi tartibsizlik",
     tag_5: "Boshqa",
     form_name_label: "Ismingiz",
-    form_contact_label: "Telegram yoki telefon",
+    form_social_label: "Telegram / Instagram",
+    form_phone_label: "Aloqa uchun telefon",
     form_message_label: "Vazifa haqida qisqacha (ixtiyoriy)",
     form_submit_btn: "Telegramga buyurtma yuborish",
     footer_rights: "© 2026. Kichik va o'rta biznes uchun avtomatizatsiya.",
@@ -336,18 +338,20 @@ async function handleFormSubmit(event) {
   event.preventDefault();
   
   const nameInput = document.getElementById('userName');
-  const contactInput = document.getElementById('userContact');
+  const socialInput = document.getElementById('userSocial');
+  const phoneInput = document.getElementById('userPhone');
   const messageInput = document.getElementById('userMessage');
   const submitBtn = document.getElementById('submitBtn');
   const feedback = document.getElementById('formFeedback');
 
-  const name = nameInput.value.trim();
-  const contact = contactInput.value.trim();
-  const message = messageInput.value.trim();
+  const name = nameInput ? nameInput.value.trim() : '';
+  const social = socialInput ? socialInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const message = messageInput ? messageInput.value.trim() : '';
   const tagsList = Array.from(selectedTags).join(', ') || (currentLanguage === 'ru' ? 'Не выбрано' : 'Tanlanmagan');
 
-  if (!name || !contact) {
-    alert(currentLanguage === 'ru' ? 'Пожалуйста, заполните имя и контакт' : 'Iltimos, ism va aloqa ma\'lumotlarini kiriting');
+  if (!name || (!phone && !social)) {
+    alert(currentLanguage === 'ru' ? 'Пожалуйста, укажите ваше имя и контакт (Telegram / Instagram или телефон)' : 'Iltimos, ismingiz va aloqa ma\'lumotlarini kiriting');
     return;
   }
 
@@ -363,33 +367,35 @@ async function handleFormSubmit(event) {
   const escapeHtml = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // Format message for Telegram HTML
-  const tgHtml = `🔔 <b>НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS</b> 🔔\n\n` +
-    `👤 <b>Имя:</b> ${escapeHtml(name)}\n` +
-    `📞 <b>Контакт:</b> ${escapeHtml(contact)}\n` +
-    `🎯 <b>Направления:</b> ${escapeHtml(tagsList)}\n` +
-    `📝 <b>Задача / Сообщение:</b>\n${escapeHtml(message || '—')}\n\n` +
+  const tgHtml = `🔔 <b>НОВАЯ ЗАЯВКА НА АВТОМАТИЗАЦИЮ</b> 🔔\n\n` +
+    `👤 <b>Клиент:</b> ${escapeHtml(name)}\n` +
+    `💬 <b>Telegram / Instagram:</b> ${escapeHtml(social || 'Не указан')}\n` +
+    `📞 <b>Телефон:</b> <code>${escapeHtml(phone || 'Не указан')}</code>\n\n` +
+    `🛠️ <b>Направления:</b> ${escapeHtml(tagsList)}\n` +
+    `📝 <b>Задача / Сообщение:</b>\n«<i>${escapeHtml(message || 'Без описания')}</i>»\n\n` +
     `⏱ <i>Время заявки: ${new Date().toLocaleTimeString('ru-RU')} (Ташкент)</i>`;
 
-  const plainText = `🔔 НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS 🔔\n\n` +
-    `👤 Имя: ${name}\n` +
-    `📞 Контакт: ${contact}\n` +
-    `🎯 Направления: ${tagsList}\n` +
+  const plainText = `🔔 НОВАЯ ЗАЯВКА НА АВТОМАТИЗАЦИЮ 🔔\n\n` +
+    `👤 Клиент: ${name}\n` +
+    `💬 Telegram/Inst: ${social || '—'}\n` +
+    `📞 Телефон: ${phone || '—'}\n` +
+    `🛠️ Направления: ${tagsList}\n` +
     `📝 Задача: ${message || '—'}\n\n` +
     `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
-  const cleanDigits = contact.replace(/[^0-9]/g, '');
-  const cleanTg = contact.replace('https://t.me/', '').replace('@', '').trim();
+  const cleanDigits = phone.replace(/[^0-9]/g, '');
+  const cleanTg = social.replace('https://t.me/', '').replace('@', '').trim();
   
   const inlineButtons = [];
   const actionRow = [];
 
   if (cleanTg && !cleanTg.startsWith('+') && isNaN(Number(cleanTg))) {
-    actionRow.push({ text: '💬 Telegram клиента', url: `https://t.me/${cleanTg}` });
-  } else if (contact.toLowerCase().includes('instagram') || contact.toLowerCase().includes('inst')) {
-    const inst = contact.replace('https://instagram.com/', '').replace('@', '').trim();
-    actionRow.push({ text: '📸 Instagram', url: `https://instagram.com/${inst}` });
+    actionRow.push({ text: `💬 Telegram: @${cleanTg}`, url: `https://t.me/${cleanTg}` });
+  } else if (social.toLowerCase().includes('instagram') || social.toLowerCase().includes('inst')) {
+    const inst = social.replace('https://instagram.com/', '').replace('@', '').trim();
+    actionRow.push({ text: `📸 Instagram: @${inst}`, url: `https://instagram.com/${inst}` });
   } else if (cleanDigits.length >= 9) {
-    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/+${cleanDigits}` });
+    actionRow.push({ text: '💬 Telegram клиента', url: `https://t.me/+${cleanDigits}` });
   }
 
   actionRow.push({ text: '📊 CRM & Статус в Боте', url: 'https://t.me/elyor_smart_agent_bot?start=crm' });
@@ -440,9 +446,10 @@ async function handleFormSubmit(event) {
       : `🎉 <b>Ajoyib, ${escapeHtml(name)}!</b> Buyurtmangiz darhol Elyorning Telegramiga yetkazildi. Tez orada siz bilan bog'lanamiz!`;
 
     // Clear form inputs
-    nameInput.value = '';
-    contactInput.value = '';
-    messageInput.value = '';
+    if (nameInput) nameInput.value = '';
+    if (socialInput) socialInput.value = '';
+    if (phoneInput) phoneInput.value = '';
+    if (messageInput) messageInput.value = '';
     selectedTags.clear();
     document.querySelectorAll('.tag-pill').forEach(btn => {
       btn.classList.remove('active', 'bg-brand-accent', 'text-white', 'border-brand-accent');
