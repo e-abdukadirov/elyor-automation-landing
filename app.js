@@ -118,139 +118,6 @@ const translations = {
     tg_box_desc: "Aqlli assistent xabaringizni darhol qabul qiladi va to'g'ridan-to'g'ri Elyor bilan bog'laydi.",
     tg_btn_open: "Открыть бота",
     tg_btn_personal: "Личный TG",
-    phone_label: "ПРЯМОЙ ТЕЛЕФОН / СВЯЗЬ",
-    contact_guarantee: "Конфиденциальность данных и коммерческой тайны гарантирована.",
-
-    form_title: "Опишите задачу за 1 минуту",
-    form_subtitle: "Выберите интересующие направления или напишите свой вопрос:",
-    form_categories_label: "Что требуется автоматизировать?",
-    tag_1: "Учёт и себестоимость",
-    tag_2: "Telegram-бот для заказов",
-    tag_3: "Лендинг для продаж",
-    tag_4: "Хаос в Excel",
-    tag_5: "Другое",
-    form_name_label: "Ваше имя",
-    form_contact_label: "Telegram или телефон",
-    form_message_label: "Коротко о задаче (необязательно)",
-    form_submit_btn: "Отправить заявку в Telegram",
-    footer_rights: "© 2026. Автоматизация для малого и среднего бизнеса.",
-    footer_top: "Наверх"
-  },
-
-  uz: {
-    nav_tagline: "Jarayonlarni avtomatlashtirish",
-    nav_problems: "Muammolar",
-    nav_solutions: "Yechimlar",
-    nav_case: "Keys",
-    nav_process: "Ish tartibi",
-    nav_contact: "Aloqa",
-    nav_cta: "Vazifani muhokama qilish",
-    case_badge: "Ishlanmoqda",
-
-    hero_badge: "// BIZNES JARAYONLARINI AVTOMATLASHTIRISH",
-    hero_title_1: "Biznesingizdan",
-    hero_title_2: "qo'l mehnatini olib tashlayman",
-    hero_desc: "Buyurtmalar, xarajatlar, hisobotlar va Telegram avtomatizatsiyasi. Har kuni soatlab vaqtni tejaydigan va sof foydani aniq ko'rsatadigan qulay raqamli tizimlar.",
-    hero_stat_1: "Ortiqcha terminlarsiz",
-    hero_stat_2: "Birinchi MVP uchun kun",
-    hero_stat_3: "TG da buyurtmalar nazorati",
-    hero_btn_discuss: "Vazifani muhokama qilish",
-    hero_btn_solutions: "Qanday tizimlar bor",
-
-    flow_inputs_title: "TARTIBSIZ MANBALAR",
-    flow_orders: "Buyurtmalar",
-    flow_expenses: "Xarajatlar",
-    flow_processing: "Aqlli tahlil & Bog'lanish",
-    flow_output_title: "BIZNESNING ANIQ PANELI",
-    flow_metric_orders: "Bugungi yangi buyurtmalar",
-    flow_metric_margin: "Tannarx & Sof foyda",
-    flow_metric_bot: "Telegram bot",
-    flow_result_tag: "Natija: 0 yo'qotilgan mijoz",
-
-    problems_tag: "// RESURS YO'QOTISH NUQTALARI",
-    problems_title: "Kichik biznes har kuni qayerda vaqt va foydani yo'qotadi",
-    problems_desc: "Biznes o'sgan sari oddiy jadvallar va guruh chatlari yashirin xarajatlar va doimiy boshog'riq manbaiga aylanadi.",
-    p1_num: "01 / JADVALLAR",
-    p1_title: "Exceldagi tartibsizlik",
-    p1_desc: "O'nlab fayllar, buzilgan formulalar, xodimlar orasida turli versiyalar va muhim raqamlarni o'chirib yuborish xavfi.",
-    p1_consequence: "→ Natija: hisob-kitobdagi xatolar",
-    p2_num: "02 / CHATLAR",
-    p2_title: "Telegramdagi buyurtmalar",
-    p2_desc: "Buyurtmalar shaxsiy yozishmalarda yo'qolib qoladi. Xodimlar javob berishni unutadi, mijoz esa raqibga ketadi.",
-    p2_consequence: "→ Natija: boy berilgan mijozlar",
-    p3_num: "03 / MOLIYA",
-    p3_title: "Noma'lum sof foyda",
-    p3_desc: "Aylanma borga o'xshaydi, lekin barcha mayda xarajatlar va xomashyodan keyin qancha qolgani noma'lum.",
-    p3_consequence: "→ Natija: kassa uzilishlari",
-    p4_num: "04 / VAQT",
-    p4_title: "Qo'lda hisobot yig'ish",
-    p4_desc: "Kechqurun va dam olish kunlarida rivojlanish o'rniga raqamlarni qo'lda jamlab o'tirish.",
-    p4_consequence: "→ Natija: rahbarning toliqishi",
-
-    solutions_tag: "// ASOSIY YO'NALISHLAR",
-    solutions_title: "Tartib va o'sish uchun 3 ta aniq yechim",
-    solutions_desc: "Hech kim tushunmaydigan murakkab dasturlar yo'q. Faqat birinchi kundan foyda keltiradigan amaliy vositalar.",
-    sol1_title: "Buyurtmalar, xarajatlar va foyda hisobi",
-    sol1_desc: "Qulay boshqaruv panellari va avtomatik jadvallar: to'lovlar, xomashyo hisobdan chiqarilishi, har bir partiya tannarxi va real vaqtdagi sof foyda.",
-    sol1_f1: "Tannarxni avtomatik hisoblash",
-    sol1_f2: "Xarajatlarni doimiy nazorat qilish",
-    sol1_f3: "Ombordagi qoldiqlarning aniq hisobi",
-    sol_cta: "Hisob avtomatizatsiyasini buyurtma qilish",
-    sol2_title: "Buyurtmalar va mijozlar uchun Telegram",
-    sol2_desc: "24/7 buyurtma qabul qiluvchi, katalog yuboradigan, savollarga javob beradigan va xodimlarni darhol ogohlantiruvchi botlar.",
-    sol2_f1: "Tanaffussiz buyurtma qabul qilish",
-    sol2_f2: "Jamoaga tezkor xabarnomalar",
-    sol2_f3: "Telegram ichida qulay mini-CRM",
-    sol_cta_bot: "Telegram botni ulash",
-    sol3_title: "Sotuv uchun lending va vizuallar",
-    sol3_desc: "Yuqori konversiyali tezkor zamonaviy saytlar. Mahsulotingizning aniq taqdimoti va qulay buyurtma berish shakli.",
-    sol3_f1: "Tezkor yuklanish & mobil moslashuv",
-    sol3_f2: "Bot bilan to'g'ridan-to'g'ri integratsiya",
-    sol3_f3: "Afzalliklarning tushunarli taqdimoti",
-    sol_cta_web: "Sotuv saytini yaratish",
-
-    case_title: "To'qimachilik ishlab chiqarishi uchun hisob tizimi",
-    case_desc: "Haqiqiy ishlab chiqarish loyihasi. Biz to'qima raqamlar yoki chiroyli ertaklar yozmaymiz. Mana tizimga kiritilgan aniq modullar:",
-    case_m1_title: "Buyurtmalar va mijozlar",
-    case_m1_sub: "Partiyalar holati va muddatlar",
-    case_m2_title: "Xomashyo va furnitura",
-    case_m2_sub: "Mato va iplarning sarfi",
-    case_m3_title: "Birlik tannarxi",
-    case_m3_sub: "Ish haqi va brakni hisobga olgan holda",
-    case_m4_title: "Sof foyda",
-    case_m4_sub: "Rahbar uchun yakuniy ko'rsatkich",
-    case_transparency_note: "Elyor Systems qoidasi: faqat real ishlab chiqarish jarayoniga asoslangan amaliy yechimlar.",
-    case_sim_row1: "Yangi buyurtma: Partiya #1042 (Futbolkalar)",
-    case_sim_row2: "Mato va ip sarfi",
-    case_sim_row3: "Tikuvchilar haqi va qadoqlash",
-    case_sim_sum_label: "SOF FOYDA PROGNOZI",
-    case_sim_sum_val: "Bichishdan oldin aniq hisob",
-    case_adapt_note: "Har qanday ishlab chiqarish turiga moslashtiriladi",
-    case_calc_btn: "Hisobingizni muhokama qilish",
-
-    process_tag: "// ISH BOSQICHLARI",
-    process_title: "Ish tartibi: tez va kutilmagan qiyinchiliklarsiz",
-    process_desc: "Birinchi suhbatdan boshlab jamoangiz qo'lidagi tayyor ishchi tizimgacha bo'lgan 4 ta bosqich.",
-    step1_title: "Jarayonni o'rganaman",
-    step1_desc: "Qo'ng'iroqlashamiz yoki uchrashamiz. Hozir qanday hisob yuritasiz va qaysi ishlar eng ko'p vaqt olayotganini ko'rsatasiz.",
-    step1_time: "Muddat: 1 kun",
-    step2_title: "Birinchi versiyani yig'aman",
-    step2_desc: "Asosiy vazifangizga mos oddiy va tushunarli prototip (jadval, bot yoki panel) yarataman.",
-    step2_time: "Muddat: ~3-5 kun",
-    step3_title: "Haqiqiy ma'lumotlarda test",
-    step3_desc: "Sinovni boshlaymiz. Siz va xodimlaringiz tizimni haqiqiy buyurtmalarda sinab ko'radi va qulayligini tekshiradi.",
-    step3_time: "Muddat: 2-3 kun",
-    step4_title: "Yaxshilaymiz va rivojlantiramiz",
-    step4_desc: "Tuzatishlar kiritamiz, jamoani o'rgatamiz va kerak bo'lsa yangi bo'limlarni (ombor, tahlil, lending) ulaymiz.",
-    step4_time: "Natija: to'liq tayyor tizim",
-
-    contact_tag: "// ALOQA VA KONSULTATSIYA",
-    contact_title: "Vazifangizni muhokama qilaylik",
-    contact_desc: "Hozir qaysi jarayon eng ko'p vaqtingizni olayotganini yozing. Men bepul 1-2 ta yechim variantini va muddatlarini taklif qilaman.",
-    tg_box_subtitle: "TELEGRAMDA TEZKOR JAVOB",
-    tg_box_desc: "Aqlli assistent xabaringizni darhol qabul qiladi va to'g'ridan-to'g'ri Elyor bilan bog'laydi.",
-    tg_btn_open: "Botni ochish",
-    tg_btn_personal: "Shaxsiy TG",
     phone_label: "TO'G'RIDAN-TO'G'RI TELEFON",
     contact_guarantee: "Ma'lumotlar va tijorat sirining maxfiyligi to'liq kafolatlanadi.",
 
@@ -263,7 +130,8 @@ const translations = {
     tag_4: "Exceldagi tartibsizlik",
     tag_5: "Boshqa",
     form_name_label: "Ismingiz",
-    form_contact_label: "Telegram yoki telefon",
+    form_social_label: "Telegram / Instagram",
+    form_phone_label: "Aloqa uchun telefon",
     form_message_label: "Vazifa haqida qisqacha (ixtiyoriy)",
     form_submit_btn: "Telegramga buyurtma yuborish",
     footer_rights: "© 2026. Kichik va o'rta biznes uchun avtomatizatsiya.",
@@ -336,18 +204,20 @@ async function handleFormSubmit(event) {
   event.preventDefault();
   
   const nameInput = document.getElementById('userName');
-  const contactInput = document.getElementById('userContact');
+  const socialInput = document.getElementById('userSocial');
+  const phoneInput = document.getElementById('userPhone');
   const messageInput = document.getElementById('userMessage');
   const submitBtn = document.getElementById('submitBtn');
   const feedback = document.getElementById('formFeedback');
 
-  const name = nameInput.value.trim();
-  const contact = contactInput.value.trim();
-  const message = messageInput.value.trim();
+  const name = nameInput ? nameInput.value.trim() : '';
+  const social = socialInput ? socialInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const message = messageInput ? messageInput.value.trim() : '';
   const tagsList = Array.from(selectedTags).join(', ') || (currentLanguage === 'ru' ? 'Не выбрано' : 'Tanlanmagan');
 
-  if (!name || !contact) {
-    alert(currentLanguage === 'ru' ? 'Пожалуйста, заполните имя и контакт' : 'Iltimos, ism va aloqa ma\'lumotlarini kiriting');
+  if (!name || (!phone && !social)) {
+    alert(currentLanguage === 'ru' ? 'Пожалуйста, укажите ваше имя и контакт (Telegram / Instagram или телефон)' : 'Iltimos, ismingiz va aloqa ma\'lumotlarini kiriting');
     return;
   }
 
@@ -363,33 +233,35 @@ async function handleFormSubmit(event) {
   const escapeHtml = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   // Format message for Telegram HTML
-  const tgHtml = `🔔 <b>НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS</b> 🔔\n\n` +
-    `👤 <b>Имя:</b> ${escapeHtml(name)}\n` +
-    `📞 <b>Контакт:</b> ${escapeHtml(contact)}\n` +
-    `🎯 <b>Направления:</b> ${escapeHtml(tagsList)}\n` +
-    `📝 <b>Задача / Сообщение:</b>\n${escapeHtml(message || '—')}\n\n` +
+  const tgHtml = `🔔 <b>НОВАЯ ЗАЯВКА НА АВТОМАТИЗАЦИЮ</b> 🔔\n\n` +
+    `👤 <b>Клиент:</b> ${escapeHtml(name)}\n` +
+    `💬 <b>Telegram / Instagram:</b> ${escapeHtml(social || 'Не указан')}\n` +
+    `📞 <b>Телефон:</b> <code>${escapeHtml(phone || 'Не указан')}</code>\n\n` +
+    `🛠️ <b>Направления:</b> ${escapeHtml(tagsList)}\n` +
+    `📝 <b>Задача / Сообщение:</b>\n«<i>${escapeHtml(message || 'Без описания')}</i>»\n\n` +
     `⏱ <i>Время заявки: ${new Date().toLocaleTimeString('ru-RU')} (Ташкент)</i>`;
 
-  const plainText = `🔔 НОВАЯ ЗАЯВКА С САЙТА ELYOR SYSTEMS 🔔\n\n` +
-    `👤 Имя: ${name}\n` +
-    `📞 Контакт: ${contact}\n` +
-    `🎯 Направления: ${tagsList}\n` +
+  const plainText = `🔔 НОВАЯ ЗАЯВКА НА АВТОМАТИЗАЦИЮ 🔔\n\n` +
+    `👤 Клиент: ${name}\n` +
+    `💬 Telegram/Inst: ${social || '—'}\n` +
+    `📞 Телефон: ${phone || '—'}\n` +
+    `🛠️ Направления: ${tagsList}\n` +
     `📝 Задача: ${message || '—'}\n\n` +
     `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
-  const cleanDigits = contact.replace(/[^0-9]/g, '');
-  const cleanTg = contact.replace('https://t.me/', '').replace('@', '').trim();
+  const cleanDigits = phone.replace(/[^0-9]/g, '');
+  const cleanTg = social.replace('https://t.me/', '').replace('@', '').trim();
   
   const inlineButtons = [];
   const actionRow = [];
 
   if (cleanTg && !cleanTg.startsWith('+') && isNaN(Number(cleanTg))) {
-    actionRow.push({ text: '💬 Telegram клиента', url: `https://t.me/${cleanTg}` });
-  } else if (contact.toLowerCase().includes('instagram') || contact.toLowerCase().includes('inst')) {
-    const inst = contact.replace('https://instagram.com/', '').replace('@', '').trim();
-    actionRow.push({ text: '📸 Instagram', url: `https://instagram.com/${inst}` });
+    actionRow.push({ text: `💬 Telegram: @${cleanTg}`, url: `https://t.me/${cleanTg}` });
+  } else if (social.toLowerCase().includes('instagram') || social.toLowerCase().includes('inst')) {
+    const inst = social.replace('https://instagram.com/', '').replace('@', '').trim();
+    actionRow.push({ text: `📸 Instagram: @${inst}`, url: `https://instagram.com/${inst}` });
   } else if (cleanDigits.length >= 9) {
-    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/+${cleanDigits}` });
+    actionRow.push({ text: '💬 Telegram клиента', url: `https://t.me/+${cleanDigits}` });
   }
 
   actionRow.push({ text: '📊 CRM & Статус в Боте', url: 'https://t.me/elyor_smart_agent_bot?start=crm' });
@@ -440,9 +312,10 @@ async function handleFormSubmit(event) {
       : `🎉 <b>Ajoyib, ${escapeHtml(name)}!</b> Buyurtmangiz darhol Elyorning Telegramiga yetkazildi. Tez orada siz bilan bog'lanamiz!`;
 
     // Clear form inputs
-    nameInput.value = '';
-    contactInput.value = '';
-    messageInput.value = '';
+    if (nameInput) nameInput.value = '';
+    if (socialInput) socialInput.value = '';
+    if (phoneInput) phoneInput.value = '';
+    if (messageInput) messageInput.value = '';
     selectedTags.clear();
     document.querySelectorAll('.tag-pill').forEach(btn => {
       btn.classList.remove('active', 'bg-brand-accent', 'text-white', 'border-brand-accent');
