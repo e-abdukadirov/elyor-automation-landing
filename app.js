@@ -92,7 +92,7 @@ const translations = {
     case_sim_row3: "Оплата работы швей & упаковка",
     case_sim_sum_label: "ПРОГНОЗ ЧИСТОЙ МАРЖИ",
     case_sim_sum_val: "Точный расчёт до старта кройки",
-    case_adapt_note: "Адаптируется под любой тип производства",
+    case_adapt_note: "Har qanday ishlab chiqarish turiga moslashtiriladi",
     case_calc_btn: "Обсудить ваш учёт",
 
     process_tag: "// ЭТАПЫ СОТРУДНИЧЕСТВА",
@@ -115,7 +115,7 @@ const translations = {
     contact_title: "Давайте обсудим вашу задачу",
     contact_desc: "Напишите, какой процесс сейчас отнимает больше всего времени. Я бесплатно предложу 1-2 варианта решения и сориентирую по срокам.",
     tg_box_subtitle: "БЫСТРЫЙ ОТВЕТ В TELEGRAM",
-    tg_box_desc: "Умный ассистент мгновенно примет ваше обращение и соединит напрямую с Elyor.",
+    tg_box_desc: "Aqlli assistent xabaringizni darhol qabul qiladi va to'g'ridan-to'g'ri Elyor bilan bog'laydi.",
     tg_btn_open: "Открыть бота",
     tg_btn_personal: "Личный TG",
     phone_label: "ПРЯМОЙ ТЕЛЕФОН / СВЯЗЬ",
@@ -123,7 +123,7 @@ const translations = {
 
     form_title: "Опишите задачу за 1 минуту",
     form_subtitle: "Выберите интересующие направления или напишите свой вопрос:",
-    form_categories_label: "Nimani avtomatlashtirish kerak?",
+    form_categories_label: "Что требуется автоматизировать?",
     tag_1: "Учёт и себестоимость",
     tag_2: "Telegram-бот для заказов",
     tag_3: "Лендинг для продаж",
@@ -384,9 +384,12 @@ async function handleFormSubmit(event) {
   const actionRow = [];
 
   if (cleanTg && !cleanTg.startsWith('+') && isNaN(Number(cleanTg))) {
-    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/${cleanTg}` });
+    actionRow.push({ text: '💬 Telegram клиента', url: `https://t.me/${cleanTg}` });
+  } else if (contact.toLowerCase().includes('instagram') || contact.toLowerCase().includes('inst')) {
+    const inst = contact.replace('https://instagram.com/', '').replace('@', '').trim();
+    actionRow.push({ text: '📸 Instagram', url: `https://instagram.com/${inst}` });
   } else if (cleanDigits.length >= 9) {
-    actionRow.push({ text: '💬 WhatsApp / Чат', url: `https://wa.me/${cleanDigits}` });
+    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/+${cleanDigits}` });
   }
 
   actionRow.push({ text: '📊 CRM & Статус в Боте', url: 'https://t.me/elyor_smart_agent_bot?start=crm' });
