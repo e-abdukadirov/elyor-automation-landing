@@ -377,22 +377,42 @@ async function handleFormSubmit(event) {
     `📝 Задача: ${message || '—'}\n\n` +
     `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
+  const cleanPhone = contact.replace(/[^0-9+]/g, '');
+  const cleanTg = contact.replace('https://t.me/', '').replace('@', '').trim();
+  
+  const inlineButtons = [];
+  const actionRow = [];
+  if (cleanPhone && cleanPhone.length >= 9) {
+    actionRow.push({ text: '📞 Позвонить', url: `tel:${cleanPhone}` });
+  }
+  if (cleanTg && !cleanTg.startsWith('+')) {
+    actionRow.push({ text: '💬 Написать в TG', url: `https://t.me/${cleanTg}` });
+  }
+  if (actionRow.length > 0) {
+    inlineButtons.push(actionRow);
+  }
+
   const botToken = '8894291120:AAFN3WQo40Ck7Br9F-aziNGAPFiqM7U5KOY';
   const chatId = '55226487';
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
   try {
-    // Primary: fetch POST with HTML parse_mode
+    // Primary: fetch POST with HTML parse_mode and inline keyboard
     let isSuccess = false;
     try {
+      const payload = {
+        chat_id: chatId,
+        text: tgHtml,
+        parse_mode: 'HTML',
+      };
+      if (inlineButtons.length > 0) {
+        payload.reply_markup = { inline_keyboard: inlineButtons };
+      }
+
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: tgHtml,
-          parse_mode: 'HTML',
-        }),
+        body: JSON.stringify(payload),
       });
       const result = await response.json();
       if (result.ok) isSuccess = true;
