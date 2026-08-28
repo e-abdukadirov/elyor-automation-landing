@@ -377,20 +377,20 @@ async function handleFormSubmit(event) {
     `📝 Задача: ${message || '—'}\n\n` +
     `⏱ Время: ${new Date().toLocaleTimeString('ru-RU')}`;
 
-  const cleanPhone = contact.replace(/[^0-9+]/g, '');
+  const cleanDigits = contact.replace(/[^0-9]/g, '');
   const cleanTg = contact.replace('https://t.me/', '').replace('@', '').trim();
   
   const inlineButtons = [];
   const actionRow = [];
-  if (cleanPhone && cleanPhone.length >= 9) {
-    actionRow.push({ text: '📞 Позвонить', url: `tel:${cleanPhone}` });
+
+  if (cleanTg && !cleanTg.startsWith('+') && isNaN(Number(cleanTg))) {
+    actionRow.push({ text: '💬 Написать в Telegram', url: `https://t.me/${cleanTg}` });
+  } else if (cleanDigits.length >= 9) {
+    actionRow.push({ text: '💬 WhatsApp / Чат', url: `https://wa.me/${cleanDigits}` });
   }
-  if (cleanTg && !cleanTg.startsWith('+')) {
-    actionRow.push({ text: '💬 Написать в TG', url: `https://t.me/${cleanTg}` });
-  }
-  if (actionRow.length > 0) {
-    inlineButtons.push(actionRow);
-  }
+
+  actionRow.push({ text: '📊 CRM & Статус в Боте', url: 'https://t.me/elyor_smart_agent_bot?start=crm' });
+  inlineButtons.push(actionRow);
 
   const botToken = '8894291120:AAFN3WQo40Ck7Br9F-aziNGAPFiqM7U5KOY';
   const chatId = '55226487';
