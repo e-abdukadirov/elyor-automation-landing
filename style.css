@@ -271,32 +271,54 @@ h1, h2, h3, p {
 .flow {
   width: 100%;
   max-width: 660px;
-  min-height: 380px;
   justify-self: end;
   display: grid;
-  grid-template-columns: 145px 60px minmax(280px, 1fr);
+  grid-template-columns: 145px 50px minmax(280px, 1fr);
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  position: relative;
+}
+
+.sources-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.sources-col:after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 15px;
+  bottom: 15px;
+  border-right: 1px dashed #7a98b5;
+  opacity: 0.65;
 }
 
 .source {
   background: rgba(29, 49, 69, 0.95);
   border: 1px solid rgba(203, 218, 230, 0.18);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   border-radius: 9px;
-  padding: 15px 14px;
+  padding: 12px 14px;
   font-size: 13px;
   font-weight: 600;
   display: flex;
   gap: 12px;
   align-items: center;
-  width: 140px;
+  width: 100%;
   color: #fff;
-  transition: border-color 0.3s;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .source:hover {
   border-color: var(--orange);
+  background: rgba(38, 62, 86, 0.98);
+  transform: translateX(4px);
+  box-shadow: 0 10px 24px rgba(221, 114, 67, 0.2);
 }
 
 .source i {
@@ -305,26 +327,8 @@ h1, h2, h3, p {
   font-size: 18px;
 }
 
-.source-1 { align-self: end; }
-.source-2 { align-self: center; }
-.source-3 { align-self: center; }
-.source-4 { align-self: start; }
-
-.flow:before {
-  content: "";
-  grid-column: 1;
-  grid-row: 1;
-  align-self: center;
-  height: 220px;
-  border-right: 1px dashed #7a98b5;
-  margin-right: 3px;
-  opacity: 0.65;
-}
-
 .funnel {
-  grid-column: 2;
-  grid-row: 1;
-  font-size: 65px;
+  font-size: 55px;
   color: var(--orange);
   transform: rotate(90deg);
   font-weight: 100;
@@ -936,20 +940,27 @@ footer .logo span {
   }
   
   .flow {
-    grid-template-columns: 110px 32px 1fr;
-    gap: 8px;
-    min-height: 260px;
-  }
-  
-  .source {
-    width: 105px;
-    padding: 10px 8px;
-    font-size: 11px;
+    grid-template-columns: 110px 24px 1fr;
     gap: 6px;
   }
   
+  .sources-col {
+    gap: 6px;
+  }
+
+  .sources-col:after {
+    display: none;
+  }
+  
+  .source {
+    width: 100%;
+    padding: 8px 6px;
+    font-size: 11px;
+    gap: 5px;
+  }
+  
   .source i {
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .dashboard {
@@ -974,7 +985,7 @@ footer .logo span {
   }
   
   .funnel {
-    font-size: 40px;
+    font-size: 36px;
   }
   
   .problems, .solutions, .process, .cta {
