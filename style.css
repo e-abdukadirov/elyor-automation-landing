@@ -422,13 +422,22 @@ h1, h2, h3, p {
   border-radius: 100px;
   color: #4a5056;
   background: rgba(255, 255, 255, 0.6);
-  transition: all 0.2s;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
 }
 
 .problems span:hover {
+  transform: translateY(-4px) scale(1.06);
   background: #fff;
   border-color: var(--orange);
   color: var(--ink);
+  box-shadow: 0 8px 20px rgba(221, 114, 67, 0.22);
+}
+
+.problems span:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 /* ==========================================================================
@@ -556,10 +565,26 @@ h1, h2, h3, p {
   font-size: 12px;
   background: #203548;
   border: 1px solid #3d5065;
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 7px 14px;
+  border-radius: 6px;
   color: #dbe4ec;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.case-tags span:hover {
+  transform: translateY(-5px) scale(1.08);
+  background: #28445f;
+  border-color: var(--orange);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(221, 114, 67, 0.35), 0 0 10px rgba(221, 114, 67, 0.2);
+}
+
+.case-tags span:active {
+  transform: translateY(-1px) scale(0.98);
 }
 
 .case aside {
